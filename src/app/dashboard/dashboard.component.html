@@ -1,0 +1,93 @@
+<h2>Your Subscriptions</h2>
+
+<!-- Form to Add New Subscription -->
+<!-- <form (submit)="addSubscription()"> -->
+  <form #subscriptionForm="ngForm" (submit)="isEditMode ? updateSubscription() : addSubscription(); subscriptionForm.resetForm();">
+
+  <label for="service">Service Name</label>
+  <input type="text" [(ngModel)]="serviceName" name="service" required>
+
+  <label for="amount">Amount</label>
+  <input type="number" [(ngModel)]="amount" name="amount" required>
+
+  <!-- <label for="renewal_date">Renewal Date</label>
+  <input type="date" [(ngModel)]="renewalDate" name="renewal_date" required> -->
+
+ <!-- Type of Subscription -->
+ <label for="type">Type of Subscription</label>
+  <div>
+    <label>
+      <input type="radio" [(ngModel)]="subscriptionType" name="type" value="monthly" required> Monthly
+    </label>
+    <label>
+      <input type="radio" [(ngModel)]="subscriptionType" name="type" value="yearly" required> Yearly
+    </label>
+  </div>
+
+    <!-- Date of Purchase -->
+    <label for="purchaseDate">Date of Purchase</label>
+    <input type="date" [(ngModel)]="purchaseDate" name="purchaseDate" required>
+
+    <!-- Toggle for Custom Payment -->
+<label for="customPayment">Enable Custom Payment Schedule</label>
+<input type="checkbox" [(ngModel)]="isCustomScheduleEnabled" name="customPayment" />
+
+<!-- Custom Payment Schedule Input (Only visible when enabled) -->
+<div *ngIf="isCustomScheduleEnabled">
+  <label for="customSchedule">Custom Payment Dates</label>
+  <input type="date" [(ngModel)]="customDate" name="customDate" />
+  <button type="button" (click)="addCustomPaymentDate()">Add Date</button>
+</div>
+
+<!-- Display Added Dates -->
+<ul>
+  <li *ngFor="let date of customSchedule">{{ date | date: 'yyyy-MM-dd' }}</li>
+</ul>
+
+
+  <button type="submit">{{ isEditMode ? 'Update Subscription' : 'Add Subscription' }}</button>
+  <button type="button" (click)="resetForm(); subscriptionForm.resetForm()">Clear</button>
+
+  <!-- <button type="button" (click)="resetForm()">Clear</button> -->
+  </form>
+
+<!-- Display Total Spending and List of Subscriptions -->
+<div *ngIf="subscriptions | async as subs; else noSubscriptions">
+  <!-- Total Spending -->
+  <p>Total Spending: {{ calculateTotalSpending(subs) }} USD</p>
+
+  <!-- List of Subscriptions -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Service Name</th>
+        <th>Amount</th>
+     <th>Subscription Type</th>
+      <th>Date of Purchase</th>
+      <th>Next Payment Date</th>
+      <th>Renewal Date</th>
+      <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sub of subs">
+        <td>{{ sub.service_name }}</td>
+        <td>{{ sub.amount }} USD</td>
+        <td>{{ sub.subscription_type }}</td>
+        <td>{{ sub.purchase_date | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ sub.next_payment_date | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ sub.renewal_date | date: 'yyyy-MM-dd' }}</td>
+
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="editSubscription(sub.id!)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="confirmDelete(sub.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Fallback for No Subscriptions -->
+<ng-template #noSubscriptions>
+  <p>No subscriptions found. Start by adding a new subscription!</p>
+</ng-template>
