@@ -1,0 +1,8 @@
+<header class="app-header">
+  <h1 class="app-title" (click)="goToDashboard()">BillBuddy</h1>
+
+  <div class="header-right">
+    <span *ngIf="userName">Welcome, {{ userName }}</span>
+    <button class="profile-btn" (click)="goToProfile()">Profile</button>
+  </div>
+</header>

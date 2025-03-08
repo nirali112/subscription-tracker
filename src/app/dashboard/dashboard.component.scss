@@ -1,0 +1,153 @@
+.dashboard-container {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edit-profile-btn,
+.logout-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.edit-profile-btn {
+  background-color: #ffc107;
+  color: black;
+}
+
+/* PROFILE EDIT MODAL */
+.profile-edit-modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-edit-container input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.profile-edit-container button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+.cancel-btn {
+  background-color: gray;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  display: flex;
+  gap: 20px;
+}
+
+/* FORM SECTION */
+.form-section {
+  width: 300px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.clear-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* CHARTS */
+.chart-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+canvas {
+  max-width: 100%;
+}
+
+/* SUBSCRIPTION LIST */
+.subscription-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.subscription-list th,
+.subscription-list td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.subscription-list th {
+  background-color: #007bff;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
