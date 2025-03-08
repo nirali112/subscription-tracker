@@ -1,17 +1,33 @@
-<h2>Login</h2>
-<form (submit)="login()">
-  <label for="email">Email</label>
-  <input type="email" [(ngModel)]="email" name="email" required>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Welcome Back</h2>
+    <p>Log in to continue managing your subscriptions</p>
 
-  <label for="password">Password</label>
-  <input type="password" [(ngModel)]="password" name="password" required>
+    <form (submit)="logIn()">
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" [(ngModel)]="email" name="email" required placeholder="Enter your email">
+      </div>
 
-  <button type="submit">Login</button>
-</form>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" [(ngModel)]="password" name="password" required placeholder="Enter your password">
+      </div>
 
-<button (click)="googleSignIn()">Sign in with Google</button>
+      <div class="forgot-password">
+        <a (click)="forgotPassword()">Forgot Password?</a>
+      </div>
 
-<!-- Signup/Register button -->
-<p>Don't have an account?
-  <a routerLink="/signup">Register here</a>
-</p>
+
+      <button type="submit" class="auth-btn">Log In</button>
+    </form>
+
+    <div class="divider">OR</div>
+
+    <button class="google-auth-btn" (click)="googleSignIn()">
+      <img src="assets/google-icon.png" alt="Google Icon"> Sign in with Google
+    </button>
+
+    <p class="switch-auth">Don't have an account? <a (click)="goToSignup()">Sign Up</a></p>
+  </div>
+</div>

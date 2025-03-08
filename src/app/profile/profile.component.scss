@@ -1,0 +1,81 @@
+.profile-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-info .info-section {
+  margin-bottom: 15px;
+}
+
+.profile-info label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.profile-info p {
+  margin: 0;
+}
+
+.profile-info input, .profile-info select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+}
+
+.profile-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.edit-btn, .save-btn, .change-password-btn, .logout-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.change-password-btn {
+  background-color: #ffc107;
+  color: black;
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-btn:hover, .save-btn:hover, .change-password-btn:hover, .logout-btn:hover {
+  opacity: 0.9;
+}

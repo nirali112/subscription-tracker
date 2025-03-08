@@ -1,0 +1,61 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <img [src]="profileImage || 'assets/default-profile.png'" alt="Profile Picture" class="profile-pic">
+    <h1>{{ userName }}</h1>
+    <input *ngIf="isEditing" type="file" (change)="onFileSelected($event)" accept="image/*">
+  </div>
+
+  <div class="profile-info">
+    <div class="info-section">
+      <label>Email:</label>
+      <p>{{ userEmail }}</p>
+    </div>
+
+    <div class="info-section">
+      <label>Phone Number:</label>
+      <p *ngIf="!isEditing">{{ phoneNumber }}</p>
+      <input *ngIf="isEditing" [(ngModel)]="phoneNumber" type="text" placeholder="Phone Number">
+    </div>
+
+    <div class="info-section">
+      <label>Country:</label>
+      <p *ngIf="!isEditing">{{ country }}</p>
+      <input *ngIf="isEditing" [(ngModel)]="country" type="text" placeholder="Country">
+    </div>
+
+    <div class="info-section">
+      <label>Preferred Currency:</label>
+      <p *ngIf="!isEditing">{{ currency }}</p>
+      <input *ngIf="isEditing" [(ngModel)]="currency" type="text" placeholder="Preferred Currency">
+    </div>
+
+    <div class="info-section">
+      <label>Preferred Payment Method:</label>
+      <p *ngIf="!isEditing">{{ preferredPaymentMethod }}</p>
+      <select *ngIf="isEditing" [(ngModel)]="preferredPaymentMethod">
+        <option value="card">Card</option>
+        <option value="paypal">PayPal</option>
+        <option value="bank">Bank Transfer</option>
+      </select>
+    </div>
+
+    <div class="info-section" *ngIf="isEditing">
+      <label>New Password:</label>
+      <input [(ngModel)]="newPassword" type="password" placeholder="New Password">
+    </div>
+
+    <div class="info-section" *ngIf="isEditing">
+      <label>Confirm Password:</label>
+      <input [(ngModel)]="confirmPassword" type="password" placeholder="Confirm Password">
+    </div>
+  </div>
+
+  <div class="profile-actions">
+    <button *ngIf="!isEditing" class="edit-btn" (click)="editProfile()">
+      <i class="fas fa-edit"></i> Edit Profile
+    </button>
+    <button *ngIf="isEditing" class="save-btn" (click)="saveProfile()">Save Changes</button>
+    <button *ngIf="isEditing" class="change-password-btn" (click)="changePassword()">Change Password</button>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+</div>
