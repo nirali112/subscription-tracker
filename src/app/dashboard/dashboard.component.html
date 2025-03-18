@@ -74,7 +74,7 @@
         </div>
 
         <!-- Subscription List -->
-        <div class="subscription-list">
+        <!-- <div class="subscription-list">
           <h3>Your Subscriptions</h3>
           <table>
             <thead>
@@ -103,7 +103,42 @@
               </tr>
             </tbody>
           </table>
+        </div> -->
+
+
+        <div class="subscription-list">
+          <h3>Your Subscriptions</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Service Name</th>
+                <th>Amount</th>
+                <th>Subscription Type</th>
+                <!-- <th>Category</th> ✅ Show Category -->
+                <th>Date of Purchase</th>
+                <th>Next Payment Date</th>
+                <th>Renewal Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let sub of subs">
+                <td>{{ sub.service_name }}</td>
+                <td>{{ sub.amount }} USD</td>
+                <td>{{ sub.subscription_type }}</td>
+                <!-- <td>{{ sub.category ?? 'Uncategorized' }}</td> ✅ Display Category -->
+                <td>{{ sub.purchase_date }}</td>
+                <td>{{ sub.next_payment_date }}</td>
+                <td>{{ sub.renewal_date }}</td>
+                <td class="actions">
+                  <button class="edit-btn" (click)="editSubscription(sub.id!)">Edit</button>
+                  <button class="delete-btn" (click)="confirmDelete(sub.id!)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
       </div>
 
       <!-- Fallback for No Subscriptions -->
