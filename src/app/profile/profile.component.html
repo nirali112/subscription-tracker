@@ -1,44 +1,39 @@
+<app-header></app-header>
+
 <div class="profile-container">
-  <div class="profile-header">
-    <img [src]="profileImage || 'assets/default-profile.png'" alt="Profile Picture" class="profile-pic">
-    <h1>{{ userName }}</h1>
-    <input *ngIf="isEditing" type="file" (change)="onFileSelected($event)" accept="image/*">
+  <!-- Welcome Message -->
+  <div class="welcome-section">
+    <h1>Welcome, {{ userName }}</h1>
+    <p>Manage your profile and preferences here.</p>
   </div>
 
+  <!-- Profile Picture Section -->
+  <!-- <div class="profile-header">
+    <div class="profile-pic-container">
+      <img [src]="profileImage || 'assets/default-profile.png'" alt="Profile Picture" class="profile-pic">
+      <button *ngIf="isEditing" class="upload-btn" (click)="fileInput.click()">
+        <i class="fas fa-upload"></i> Upload Photo
+      </button>
+      <input #fileInput *ngIf="isEditing" type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+    </div>
+  </div> -->
+
+  <!-- Profile Information Section -->
   <div class="profile-info">
+    <!-- Email (Display Only) -->
     <div class="info-section">
       <label>Email:</label>
       <p>{{ userEmail }}</p>
     </div>
 
+    <!-- Phone Number -->
     <div class="info-section">
       <label>Phone Number:</label>
-      <p *ngIf="!isEditing">{{ phoneNumber }}</p>
+      <p *ngIf="!isEditing">{{ phoneNumber || 'Not provided' }}</p>
       <input *ngIf="isEditing" [(ngModel)]="phoneNumber" type="text" placeholder="Phone Number">
     </div>
 
-    <div class="info-section">
-      <label>Country:</label>
-      <p *ngIf="!isEditing">{{ country }}</p>
-      <input *ngIf="isEditing" [(ngModel)]="country" type="text" placeholder="Country">
-    </div>
-
-    <div class="info-section">
-      <label>Preferred Currency:</label>
-      <p *ngIf="!isEditing">{{ currency }}</p>
-      <input *ngIf="isEditing" [(ngModel)]="currency" type="text" placeholder="Preferred Currency">
-    </div>
-
-    <div class="info-section">
-      <label>Preferred Payment Method:</label>
-      <p *ngIf="!isEditing">{{ preferredPaymentMethod }}</p>
-      <select *ngIf="isEditing" [(ngModel)]="preferredPaymentMethod">
-        <option value="card">Card</option>
-        <option value="paypal">PayPal</option>
-        <option value="bank">Bank Transfer</option>
-      </select>
-    </div>
-
+     <!-- Password Change -->
     <div class="info-section" *ngIf="isEditing">
       <label>New Password:</label>
       <input [(ngModel)]="newPassword" type="password" placeholder="New Password">
@@ -48,14 +43,74 @@
       <label>Confirm Password:</label>
       <input [(ngModel)]="confirmPassword" type="password" placeholder="Confirm Password">
     </div>
+
+
+    <!-- Notification Preferences -->
+    <div class="info-section" *ngIf="isEditing">
+      <label>Notification Preferences:</label>
+      <div class="notification-options">
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="notifyByEmail" class="checkbox-input">
+          <span class="checkbox-custom"></span>
+          Email
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="notifyBySMS" class="checkbox-input">
+          <span class="checkbox-custom"></span>
+          SMS
+        </label>
+      </div>
+    </div>
   </div>
 
+
+    <!-- Country -->
+    <!-- <div class="info-section">
+      <label>Country:</label>
+      <p *ngIf="!isEditing">{{ country || 'Not provided' }}</p>
+      <select *ngIf="isEditing" [(ngModel)]="country" (change)="onCountryChange($event)">
+        <option value="">Select Country</option>
+        <option *ngFor="let c of supportedCountries" [value]="c.name">{{ c.name }}</option>
+      </select>
+    </div> -->
+
+    <!-- Preferred Currency -->
+    <!-- <div class="info-section">
+      <label>Preferred Currency:</label>
+      <p *ngIf="!isEditing">{{ currency || 'Not set' }}</p>
+      <select *ngIf="isEditing" [(ngModel)]="currency">
+        <option value="">Select Currency</option>
+        <option *ngFor="let curr of supportedCurrencies" [value]="curr.code">
+          {{ curr.name }} ({{ curr.symbol }})
+        </option>
+      </select>
+    </div> -->
+
+    <!-- Preferred Payment Method -->
+    <!-- <div class="info-section">
+      <label>Preferred Payment Method:</label>
+      <p *ngIf="!isEditing">{{ preferredPaymentMethod || 'Not set' }}</p>
+      <select *ngIf="isEditing" [(ngModel)]="preferredPaymentMethod">
+        <option value="">Select Payment Method</option>
+        <option value="card">Card</option>
+        <option value="paypal">PayPal</option>
+      </select>
+    </div>
+  </div> -->
+
+  <!-- Action Buttons -->
   <div class="profile-actions">
     <button *ngIf="!isEditing" class="edit-btn" (click)="editProfile()">
       <i class="fas fa-edit"></i> Edit Profile
     </button>
-    <button *ngIf="isEditing" class="save-btn" (click)="saveProfile()">Save Changes</button>
-    <button *ngIf="isEditing" class="change-password-btn" (click)="changePassword()">Change Password</button>
-    <button class="logout-btn" (click)="logout()">Logout</button>
+    <button *ngIf="isEditing" class="save-btn" (click)="saveProfile()">
+      <i class="fas fa-save"></i> Save Changes
+    </button>
+    <button *ngIf="isEditing" class="cancel-btn" (click)="isEditing = false">
+      <i class="fas fa-times"></i> Cancel
+    </button>
+    <button class="logout-btn" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
   </div>
 </div>
