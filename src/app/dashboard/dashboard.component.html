@@ -1,15 +1,6 @@
 <app-header></app-header>
 <div class="dashboard-container">
   <h3>Welcome to Your Dashboard</h3>
-  <!-- Header Section -->
-<!-- Header -->
-<!-- <div class="header">
-  <h2>Welcome to Your Dashboard</h2>
-  <div class="profile-section">
-    <span>{{ userName }}</span>
-    <button (click)="goToProfile()">Profile</button>
-  </div>
-</div> -->
 
   <!-- Profile Edit Section -->
   <div *ngIf="isEditingProfile" class="profile-edit-section">
@@ -57,91 +48,65 @@
 
     <!-- Charts and Subscription List -->
     <div class="content-section">
-      <!-- Total Spending -->
-      <div *ngIf="subscriptions | async as subs; else noSubscriptions">
-        <div class="total-spending">
-          <h3>Total Spending: {{ calculateTotalSpending(subs) }} USD</h3>
-        </div>
+      <div *ngIf="subscriptions | async as subs; else loading">
+        <ng-container *ngIf="subs.length > 0; else noSubscriptions">
 
-        <!-- Chart Section -->
-        <div class="chart-section">
-          <h3>Spending Trends</h3>
-          <div class="chart-placeholder">
-            <p>
-              <app-spending-trends></app-spending-trends>
-            </p>
+          <!-- Total Spending -->
+          <div class="total-spending">
+            <h3>Total Spending: {{ calculateTotalSpending(subs) }} USD</h3>
           </div>
-        </div>
 
-        <!-- Subscription List -->
-        <!-- <div class="subscription-list">
-          <h3>Your Subscriptions</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Service Name</th>
-                <th>Amount</th>
-                <th>Subscription Type</th>
-                <th>Date of Purchase</th>
-                <th>Next Payment Date</th>
-                <th>Renewal Date</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let sub of subs">
-                <td>{{ sub.service_name }}</td>
-                <td>{{ sub.amount }} USD</td>
-                <td>{{ sub.subscription_type }}</td>
-                <td>{{ sub.purchase_date }}</td>
-                <td>{{ sub.next_payment_date }}</td>
-                <td>{{ sub.renewal_date }}</td>
-                <td class="actions">
-                  <button class="edit-btn" (click)="editSubscription(sub.id!)">Edit</button>
-                  <button class="delete-btn" (click)="confirmDelete(sub.id!)">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div> -->
+          <!-- Chart Section -->
+          <div class="chart-section">
+            <h3>Spending Trends</h3>
+            <div class="chart-placeholder">
+              <p>
+                <app-spending-trends [subscriptions]="subs"></app-spending-trends>
+              </p>
+            </div>
+          </div>
 
+          <!-- Subscription Table -->
+          <div class="subscription-list">
+            <h3>Your Subscriptions</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Service Name</th>
+                  <th>Amount</th>
+                  <th>Subscription Type</th>
+                  <th>Date of Purchase</th>
+                  <th>Next Payment Date</th>
+                  <th>Renewal Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of subs">
+                  <td>{{ sub.service_name }}</td>
+                  <td>{{ sub.amount }} USD</td>
+                  <td>{{ sub.subscription_type }}</td>
+                  <td>{{ sub.purchase_date }}</td>
+                  <td>{{ sub.next_payment_date }}</td>
+                  <td>{{ sub.renewal_date }}</td>
+                  <td class="actions">
+                    <button class="edit-btn" (click)="editSubscription(sub.id!)">Edit</button>
+                    <button class="delete-btn" (click)="confirmDelete(sub.id!)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <div class="subscription-list">
-          <h3>Your Subscriptions</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Service Name</th>
-                <th>Amount</th>
-                <th>Subscription Type</th>
-                <!-- <th>Category</th> ✅ Show Category -->
-                <th>Date of Purchase</th>
-                <th>Next Payment Date</th>
-                <th>Renewal Date</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let sub of subs">
-                <td>{{ sub.service_name }}</td>
-                <td>{{ sub.amount }} USD</td>
-                <td>{{ sub.subscription_type }}</td>
-                <!-- <td>{{ sub.category ?? 'Uncategorized' }}</td> ✅ Display Category -->
-                <td>{{ sub.purchase_date }}</td>
-                <td>{{ sub.next_payment_date }}</td>
-                <td>{{ sub.renewal_date }}</td>
-                <td class="actions">
-                  <button class="edit-btn" (click)="editSubscription(sub.id!)">Edit</button>
-                  <button class="delete-btn" (click)="confirmDelete(sub.id!)">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
+        </ng-container>
       </div>
 
-      <!-- Fallback for No Subscriptions -->
+      <!-- Loading Template -->
+      <ng-template #loading>
+        <p>Loading your subscriptions...</p>
+      </ng-template>
+
+      <!-- No Data Template -->
       <ng-template #noSubscriptions>
         <p>No subscriptions found. Start by adding a new subscription!</p>
       </ng-template>

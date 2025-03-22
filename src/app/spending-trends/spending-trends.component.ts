@@ -26,11 +26,11 @@ export class SpendingTrendsComponent implements OnInit, OnDestroy {
   constructor(private firestore: Firestore, private auth: Auth) {}
 
   ngOnInit() {
-    console.log("🔥 ngOnInit() started...");
+    // console.log("🔥 ngOnInit() started...");
 
     this.auth.onAuthStateChanged(user => {
       if (user) {
-        console.log("✅ User logged in:", user.uid);
+        // console.log("✅ User logged in:", user.uid);
         this.loadSubscriptions(user.uid);
       } else {
         console.warn("⚠️ No user logged in!");
@@ -44,7 +44,7 @@ export class SpendingTrendsComponent implements OnInit, OnDestroy {
     this.subscriptions$ = collectionData(subscriptionsCollection, { idField: 'id' }) as Observable<SubscriptionData[]>;
 
     this.userSubscription = this.subscriptions$.subscribe(subscriptions => {
-      console.log("📊 Subscriptions fetched:", subscriptions);
+      // console.log("📊 Subscriptions fetched:", subscriptions);
       this.renderPieChart(subscriptions);
       this.renderBarChart(subscriptions);
       this.renderLineChart(subscriptions);

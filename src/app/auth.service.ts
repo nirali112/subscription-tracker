@@ -29,11 +29,11 @@ export class AuthService {
 
     onAuthStateChanged(this.authInstance, (user) => {
       if (user) {
-        console.log("running login page everytime clicking on url in auth service...");
-        console.log('User is logged in:', user);
+        // console.log("running login page everytime clicking on url in auth service...");
+        // console.log('User is logged in:', user);
         this.currentUserSubject.next(user);
       } else {
-        console.log('No user logged in');
+        // console.log('No user logged in');
         this.currentUserSubject.next(null);
       }
     });
@@ -114,7 +114,7 @@ export class AuthService {
   async forgotPassword(email: string) {
     try {
       await sendPasswordResetEmail(this.authInstance, email);
-      console.log('Password reset email sent');
+      // console.log('Password reset email sent');
     } catch (error) {
       console.error('Error sending password reset email:', error);
       throw error;
@@ -155,7 +155,7 @@ export class AuthService {
       const user = this.authInstance.currentUser;
       if (user) {
         await updatePassword(user, newPassword);
-        console.log('Password updated successfully!');
+        // console.log('Password updated successfully!');
       } else {
         throw new Error('No user is currently logged in.');
       }

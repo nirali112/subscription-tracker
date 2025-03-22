@@ -19,10 +19,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log('User is logged in:', user.email);
+        // console.log('User is logged in:', user.email);
         this.router.navigate(['/dashboard']);
       } else {
-        console.log('No user is logged in. Redirecting to login...');
+        // console.log('No user is logged in. Redirecting to login...');
         this.router.navigate(['/login']);
       }
       this.isAuthResolved = true; // Firebase has finished checking auth

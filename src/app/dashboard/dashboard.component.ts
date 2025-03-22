@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
         const userDocRef = doc(this.firestore, `users/${user.uid}`);
         await updateDoc(userDocRef, { name: this.userName });
 
-        console.log('Profile updated successfully!');
+        // console.log('Profile updated successfully!');
         this.isEditingProfile = false;
       } catch (error) {
         console.error('Error updating profile:', error);
@@ -208,7 +208,7 @@ export class DashboardComponent implements OnInit {
 
       try {
         await deleteDoc(subscriptionDoc);
-        console.log('Subscription deleted');
+        // console.log('Subscription deleted');
       } catch (error) {
         console.error('Error deleting subscription:', error);
       }

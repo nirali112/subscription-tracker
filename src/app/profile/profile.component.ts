@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
           // profileImage: this.profileImage
         });
         this.isEditing = false;
-        console.log('Profile updated successfully!');
+        // console.log('Profile updated successfully!');
       } catch (error) {
         console.error('Error updating profile:', error);
       }
@@ -121,7 +121,7 @@ export class ProfileComponent implements OnInit {
         email: this.userEmail,
         newPassword: this.newPassword
       }).toPromise();
-      console.log('Password changed successfully:', response);
+      // console.log('Password changed successfully:', response);
       alert('Password changed successfully');
     } catch (error) {
       console.error('Error changing password:', error);
@@ -157,7 +157,7 @@ export class ProfileComponent implements OnInit {
   /** Logout user */
   logout() {
     this.authService.logOut().then(() => {
-      console.log('User logged out');
+      // console.log('User logged out');
       this.router.navigate(['/login']);
     }).catch(error => console.error('Error logging out:', error));
   }
