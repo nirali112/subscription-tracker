@@ -31,10 +31,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Subscription Management & Spending Tracker
 Concept:
 •	Users can log their various subscriptions (Netflix, Spotify, gym memberships, etc.).
-•	A dashboard shows how much is being spent monthly on subscriptions and compares it to other categories.
-•	Include a feature to track upcoming renewal dates and cancellation reminders.
+•	A dashboard shows how much is being spent monthly on subscriptions and compares it to montly and yearly spends.
 •	Offer suggestions for consolidating or eliminating unnecessary subscriptions.
-•	Use Firebase or MongoDB to store user subscriptions and spending data.
+•	Used Firebase to store user subscriptions and spending data.
 •	Free hosting: Firebase Hosting or Vercel.
 Why it’s great: Subscription-based spending is a modern issue, and tracking them efficiently adds a unique angle to typical expense trackers. Plus, the reminder feature shows thoughtful user experience design.
  -->
