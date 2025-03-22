@@ -1,39 +1,130 @@
-# SubscriptionTracker
+# 🧾 BillBuddy – Subscription Tracker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
+**BillBuddy** is a simple, responsive, and user-friendly web application that helps users track their recurring subscription services. Built with Angular and Firebase, it allows users to manage, visualize, and stay aware of their monthly and yearly subscription expenses.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 📌 Features
 
-## Code scaffolding
+- 🔐 **Authentication**
+  - Sign up, log in, and secure user session management via Firebase Authentication.
+  
+- 📊 **Visual Dashboard**
+  - Track total spending with interactive charts.
+  - Spending categorized by service and subscription type (monthly/yearly).
+  
+- ➕ **Add & Edit Subscriptions**
+  - Input service name, amount, and purchase date.
+  - Automatically calculates next payment and renewal date.
+  
+- 🗑 **Delete Subscriptions**
+  - Easily manage unwanted or expired subscriptions.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- 📈 **Spending Trends**
+  - Pie, bar, and line charts show insights on where money is going.
 
-## Build
+- 👤 **Profile Management**
+  - Update your name and other details.
+  - Secure password change support.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## 📁 Project Structure
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+subscription-tracker/
+│
+├── src/
+│   ├── app/
+│   │   ├── dashboard/               # Dashboard component and UI
+│   │   ├── login/                   # Login component
+│   │   ├── signup/                  # Signup component
+│   │   ├── profile/                 # User profile component
+│   │   ├── header/                  # Shared header with navigation
+│   │   ├── spending-trends/         # Charts and data visualization
+│   │   ├── auth.service.ts          # Auth logic (Firebase)
+│   │   ├── app.routes.ts            # App routing configuration
+│   │   ├── app.config.ts            # App-level configurations
+│   │   └── models/                  # Interfaces and type definitions
+│   ├── environments/                # Environment config files
+│   ├── main.ts                      # App bootstrap file
+│   └── styles.scss                  # Global styles
+│
+├── README.md
+├── angular.json
+├── package.json
+└── tsconfig*.json
+```
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🚀 Getting Started
 
-## Further help
+### ✅ Prerequisites
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Node.js & npm
+- Angular CLI (`npm install -g @angular/cli`)
+- Firebase Project (for auth + Firestore)
 
+### 📦 Installation
 
-<!-- 
-Subscription Management & Spending Tracker
-Concept:
-•	Users can log their various subscriptions (Netflix, Spotify, gym memberships, etc.).
-•	A dashboard shows how much is being spent monthly on subscriptions and compares it to montly and yearly spends.
-•	Offer suggestions for consolidating or eliminating unnecessary subscriptions.
-•	Used Firebase to store user subscriptions and spending data.
-•	Free hosting: Firebase Hosting or Vercel.
-Why it’s great: Subscription-based spending is a modern issue, and tracking them efficiently adds a unique angle to typical expense trackers. Plus, the reminder feature shows thoughtful user experience design.
- -->
+```bash
+# Clone the repo
+git clone https://github.com/your-username/subscription-tracker.git
+
+# Install dependencies
+cd subscription-tracker
+npm install
+```
+
+### 🔑 Set Up Firebase
+
+1. Create a Firebase project at [https://console.firebase.google.com](https://console.firebase.google.com)
+2. Enable:
+   - **Authentication > Email/Password**
+   - **Firestore Database**
+3. Replace your Firebase config in `src/environments/environment.ts`:
+
+```ts
+export const environment = {
+  firebaseConfig: {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "your-project.firebaseapp.com",
+    projectId: "your-project-id",
+    storageBucket: "your-project.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "your-app-id"
+  }
+};
+```
+
+### ▶️ Run Locally
+
+```bash
+ng serve
+```
+
+Then visit: `http://localhost:4200/`
+
+---
+
+## 🧠 Future Enhancements (Recommendations)
+
+> These features are planned or could be added for a more powerful experience:
+
+- 💡 **Smart Subscription Reminders**  
+  Notify users of upcoming payments or trials ending soon.
+
+- 🤖 **AI-Based Categorization & Price Optimization**  
+  Use AI to auto-categorize subscriptions and recommend cheaper alternatives.
+
+- 📬 **Email Notifications**  
+  Periodic reports or alerts via email about spending.
+
+- 📱 **PWA or Mobile App Support**
+
+---
+
+## 📃 License
+
+You can choose to add a license like MIT if you plan to open-source this.
