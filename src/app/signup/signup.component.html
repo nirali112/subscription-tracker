@@ -1,34 +1,89 @@
-<div class="auth-container">
-  <div class="auth-card">
-    <h2>Create an Account</h2>
-    <p>Sign up to start tracking your subscriptions</p>
+<div class="signup-container">
+  <div class="signup-card">
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <h1 class="logo">BillBuddy</h1>
+      <p class="tagline">Track your subscriptions with ease</p>
+    </div>
 
-    <form (submit)="signUp()">
-      <div class="input-group">
+    <!-- Header -->
+    <div class="signup-header">
+      <h1>Create an Account</h1>
+      <p>Sign up to start tracking your subscriptions</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+
+    <!-- Signup Form -->
+    <form class="signup-form" (ngSubmit)="signUp()" #signupForm="ngForm">
+      <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" [(ngModel)]="name" name="name" required placeholder="Enter your full name">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="name"
+          placeholder="Enter your full name"
+          required
+          #nameInput="ngModel">
       </div>
 
-      <div class="input-group">
+      <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" [(ngModel)]="email" name="email" required placeholder="Enter your email">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Enter your email"
+          required
+          #emailInput="ngModel">
       </div>
 
-      <div class="input-group">
+      <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" [(ngModel)]="password" name="password" required placeholder="Create a password">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Create a password"
+          required
+          minlength="6"
+          #passwordInput="ngModel">
       </div>
 
-      <button type="submit" class="auth-btn">Sign Up</button>
+      <button
+        type="submit"
+        class="signup-button"
+        [disabled]="!signupForm.form.valid || isLoading">
+        <span *ngIf="isLoading" class="loading"></span>
+        {{ isLoading ? 'Creating Account...' : 'Sign Up' }}
+      </button>
     </form>
 
-    <div class="divider">OR</div>
+    <!-- Divider -->
+    <div class="divider">
+      <span>or</span>
+    </div>
 
-    <button class="google-auth-btn" (click)="googleSignUp()">
-      <i class="fab fa-google"></i> Sign up with Google
+    <!-- Google Sign In -->
+    <button class="google-signin" (click)="googleSignIn()" [disabled]="isLoading">
+      <div class="google-icon"></div>
+      Sign up with Google
     </button>
 
-
-    <p class="switch-auth">Already have an account? <a (click)="goToLogin()">Log In</a></p>
+    <!-- Login Link -->
+    <div class="login-link">
+      <p>Already have an account? <a routerLink="/login">Log In</a></p>
+    </div>
   </div>
 </div>

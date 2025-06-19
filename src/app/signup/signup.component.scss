@@ -1,310 +1,283 @@
-// signup.scss - Enhanced responsive design (extends login styles)
+// signup.component.scss
 
-// Import login styles as base
-@import 'login';
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
 
-// Signup-specific overrides and additions
-.auth-card {
-  // Larger card for signup form
-  max-width: 450px;
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
-    max-width: 400px;
+    padding: 15px;
   }
 
   @media (max-width: 480px) {
+    padding: 10px;
+  }
+}
+
+.signup-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 35px;
+    border-radius: 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 25px;
     max-width: 100%;
   }
 }
 
-// Additional input validation styles
-.input-group {
-  &.has-error {
-    input {
-      border-color: #dc3545;
-      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
-    }
+.logo-section {
+  margin-bottom: 30px;
 
-    .error-text {
-      color: #dc3545;
-      font-size: 12px;
-      margin-top: 5px;
-      font-weight: 500;
-
-      @media (max-width: 480px) {
-        font-size: 11px;
-      }
-    }
-  }
-
-  &.has-success {
-    input {
-      border-color: #28a745;
-      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
-    }
-
-    .success-icon {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #28a745;
-      font-size: 16px;
-    }
-  }
-}
-
-// Password strength indicator
-.password-strength {
-  margin-top: 8px;
-
-  .strength-bar {
-    height: 4px;
-    background: #e9ecef;
-    border-radius: 2px;
-    overflow: hidden;
-
-    .strength-fill {
-      height: 100%;
-      transition: all 0.3s ease;
-      border-radius: 2px;
-
-      &.weak {
-        width: 25%;
-        background: #dc3545;
-      }
-
-      &.fair {
-        width: 50%;
-        background: #ffc107;
-      }
-
-      &.good {
-        width: 75%;
-        background: #17a2b8;
-      }
-
-      &.strong {
-        width: 100%;
-        background: #28a745;
-      }
-    }
-  }
-
-  .strength-text {
-    font-size: 12px;
-    margin-top: 4px;
-    font-weight: 500;
+  .logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
 
     @media (max-width: 480px) {
-      font-size: 11px;
+      font-size: 2rem;
     }
+  }
 
-    &.weak { color: #dc3545; }
-    &.fair { color: #ffc107; }
-    &.good { color: #17a2b8; }
-    &.strong { color: #28a745; }
+  .tagline {
+    color: #6c757d;
+    font-size: 16px;
+    margin: 0;
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
   }
 }
 
-// Terms and conditions checkbox
-.terms-group {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin: 20px 0;
+.signup-header {
+  margin-bottom: 30px;
+
+  h1 {
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  p {
+    color: #6c757d;
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+.signup-form {
   text-align: left;
 
-  @media (max-width: 480px) {
-    margin: 15px 0;
-    gap: 8px;
-  }
+  .form-group {
+    margin-bottom: 20px;
 
-  .checkbox-custom {
-    width: 18px;
-    height: 18px;
-    border: 2px solid #667eea;
-    border-radius: 4px;
-    position: relative;
-    cursor: pointer;
-    flex-shrink: 0;
-    margin-top: 2px;
-    transition: all 0.3s ease;
-
-    @media (max-width: 480px) {
-      width: 16px;
-      height: 16px;
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #495057;
+      font-size: 14px;
     }
 
-    &.checked {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-color: #667eea;
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
 
-      &::after {
-        content: '✓';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 12px;
-        font-weight: bold;
+      &:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      &::placeholder {
+        color: #adb5bd;
+      }
+
+      @media (max-width: 480px) {
+        padding: 10px 12px;
       }
     }
   }
 
-  .terms-text {
-    font-size: 13px;
-    color: #6c757d;
-    line-height: 1.4;
+  .signup-button {
+    width: 100%;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
 
     @media (max-width: 480px) {
-      font-size: 12px;
+      padding: 12px 18px;
+      font-size: 14px;
     }
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e9ecef;
+  }
+
+  span {
+    padding: 0 15px;
+    color: #6c757d;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.google-signin {
+  width: 100%;
+  padding: 12px 20px;
+  background: white;
+  color: #333;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+
+  &:hover {
+    border-color: #667eea;
+    background: #f8f9fa;
+    transform: translateY(-1px);
+  }
+
+  .google-icon {
+    width: 18px;
+    height: 18px;
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjY0IDkuMjA0NTVDMTcuNjQgOC41NjU5MSAxNy41ODI3IDcuOTUyMjcgMTcuNDc2NCA3LjM2MzY0SDE5VjEwLjg0MDlIMTQuNjk1NUMxNC40NzA5IDEyLjM0MDkgMTMuNjU4MiAxMy41ODE4IDEyLjQ4NzMgMTQuMzI3M0wxNS41MjczIDE2LjU5MDlDMTYuNzUwOSAxNS4zMjczIDE3LjY0IDEyLjUyNzMgMTcuNjQgOS4yMDQ1NVoiIGZpbGw9IiM0Mjg1RjQiLz4KPHBhdGggZD0iTTkgMThDMTEuNDMgMTggMTMuNDY3MyAxNy4yMTgyIDE0Ljk1NjQgMTUuNjgxOEwxMi40ODczIDEzLjk5MDlDMTEuNjkwOSAxNC41MzY0IDEwLjYzNjQgMTQuOTU0NSA5IDE0Ljk1NDVDNi42NSAxNC45NTQ1IDQuNjUgMTMuNTczIDMuODA2NCAxMS42MDkxTDEuMjA5MSAxMy45MDkxQzIuNjU5MSAxNi45NTQ1IDUuNTY4MiAxOCA5IDE4WiIgZmlsbD0iIzM0QTg1MyIvPgo8cGF0aCBkPSJNMy44MTU5IDExLjYxODJDMy42MTM2IDExLjA2ODIgMy40OTU0IDEwLjQ5MDkgMy40OTU0IDEwLjA5MDlDMy40OTU0IDkuNjkwOTEgMy42MTM2IDkuMTE2MzYgMy44MDY4IDguNTcyNzNMMy44MTU5IDQuNjgxODJMMC4zODA5MSA2Ljk1MDFDMC4zODA5MSA3Ljk5MDkxIDEuMTkwOTEgOS40MDkwOSAyLjEzNjM2IDEwLjAzNjRMMy44MTU5IDExLjYxODJaIiBmaWxsPSIjRkJCQzA0Ii8+CjxwYXRoIGQ9Ik05IDMuOTU0NTVDMTAuNzQwOSAzLjk1NDU1IDEyLjI1NDUgNC41NDU0NSAxMy40MzY0IDUuNjg2MzZMMTUuNjQwOSAzLjQ4MTgyQzEzLjc4NjQgMS44MTgyIDExLjUyNzMgMCA5IDBDNS41NjgyIDAgMi42NDU0NSAxLjQ4NjM2IDEuMjA0NTUgNC4wMzYzNkwzLjgwNjgyIDguNTcyNzNDNC42MzYzNiA2LjYwOTA5IDYuNjQwOTEgMy45NTQ1NSA5IDMuOTU0NTVaIiBmaWxsPSIjRUE0MzM1Ii8+Cjwvc3ZnPgo=') no-repeat center;
+    background-size: contain;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px 18px;
+    font-size: 12px;
+  }
+}
+
+.login-link {
+  text-align: center;
+
+  p {
+    color: #6c757d;
+    font-size: 14px;
+    margin: 0;
 
     a {
       color: #667eea;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
+      transition: color 0.3s ease;
 
       &:hover {
+        color: #5a6fd8;
         text-decoration: underline;
       }
     }
   }
 }
 
-// Enhanced signup button
-.signup-btn {
-  position: relative;
-  overflow: hidden;
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-
-    &:hover {
-      transform: none;
-      box-shadow: none;
-    }
-  }
+// Error message styling
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border: 1px solid #f5c6cb;
 }
 
-// Step indicator for multi-step signup
-.step-indicator {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-
-  @media (max-width: 480px) {
-    margin-bottom: 20px;
-  }
-
-  .step {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #e9ecef;
-    color: #6c757d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 600;
-    margin: 0 5px;
-    transition: all 0.3s ease;
-
-    @media (max-width: 480px) {
-      width: 25px;
-      height: 25px;
-      font-size: 12px;
-      margin: 0 3px;
-    }
-
-    &.active {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      transform: scale(1.1);
-    }
-
-    &.completed {
-      background: #28a745;
-      color: white;
-
-      &::after {
-        content: '✓';
-        font-size: 12px;
-      }
-    }
-
-    &:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 2px;
-      background: #e9ecef;
-      left: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      margin-left: 5px;
-
-      @media (max-width: 480px) {
-        width: 15px;
-        margin-left: 3px;
-      }
-    }
-  }
+// Success message styling
+.success-message {
+  background: #d4edda;
+  color: #155724;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border: 1px solid #c3e6cb;
 }
 
-// Additional animations
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+// Loading spinner
+.loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 8px;
 }
 
-.auth-card {
-  animation: slideInUp 0.6s ease-out;
-}
-
-// Email verification notice
-.verification-notice {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-  border: 1px solid rgba(102, 126, 234, 0.2);
-  padding: 15px;
-  border-radius: 10px;
-  margin: 20px 0;
-  text-align: center;
-
-  @media (max-width: 480px) {
-    padding: 12px;
-    margin: 15px 0;
-  }
-
-  .notice-icon {
-    font-size: 24px;
-    color: #667eea;
-    margin-bottom: 10px;
-
-    @media (max-width: 480px) {
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-  }
-
-  .notice-text {
-    color: #495057;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4;
-
-    @media (max-width: 480px) {
-      font-size: 13px;
-    }
-  }
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
