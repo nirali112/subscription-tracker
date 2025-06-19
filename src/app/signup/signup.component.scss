@@ -1,128 +1,310 @@
-.auth-container {
+// signup.scss - Enhanced responsive design (extends login styles)
+
+// Import login styles as base
+@import 'login';
+
+// Signup-specific overrides and additions
+.auth-card {
+  // Larger card for signup form
+  max-width: 450px;
+
+  @media (max-width: 768px) {
+    max-width: 400px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+  }
+}
+
+// Additional input validation styles
+.input-group {
+  &.has-error {
+    input {
+      border-color: #dc3545;
+      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+    }
+
+    .error-text {
+      color: #dc3545;
+      font-size: 12px;
+      margin-top: 5px;
+      font-weight: 500;
+
+      @media (max-width: 480px) {
+        font-size: 11px;
+      }
+    }
+  }
+
+  &.has-success {
+    input {
+      border-color: #28a745;
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+    }
+
+    .success-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #28a745;
+      font-size: 16px;
+    }
+  }
+}
+
+// Password strength indicator
+.password-strength {
+  margin-top: 8px;
+
+  .strength-bar {
+    height: 4px;
+    background: #e9ecef;
+    border-radius: 2px;
+    overflow: hidden;
+
+    .strength-fill {
+      height: 100%;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+
+      &.weak {
+        width: 25%;
+        background: #dc3545;
+      }
+
+      &.fair {
+        width: 50%;
+        background: #ffc107;
+      }
+
+      &.good {
+        width: 75%;
+        background: #17a2b8;
+      }
+
+      &.strong {
+        width: 100%;
+        background: #28a745;
+      }
+    }
+  }
+
+  .strength-text {
+    font-size: 12px;
+    margin-top: 4px;
+    font-weight: 500;
+
+    @media (max-width: 480px) {
+      font-size: 11px;
+    }
+
+    &.weak { color: #dc3545; }
+    &.fair { color: #ffc107; }
+    &.good { color: #17a2b8; }
+    &.strong { color: #28a745; }
+  }
+}
+
+// Terms and conditions checkbox
+.terms-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 20px 0;
+  text-align: left;
+
+  @media (max-width: 480px) {
+    margin: 15px 0;
+    gap: 8px;
+  }
+
+  .checkbox-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #667eea;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.3s ease;
+
+    @media (max-width: 480px) {
+      width: 16px;
+      height: 16px;
+    }
+
+    &.checked {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-color: #667eea;
+
+      &::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .terms-text {
+    font-size: 13px;
+    color: #6c757d;
+    line-height: 1.4;
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+
+    a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Enhanced signup button
+.signup-btn {
+  position: relative;
+  overflow: hidden;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+// Step indicator for multi-step signup
+.step-indicator {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #f4f4f9;
+  margin-bottom: 30px;
+
+  @media (max-width: 480px) {
+    margin-bottom: 20px;
+  }
+
+  .step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+
+    @media (max-width: 480px) {
+      width: 25px;
+      height: 25px;
+      font-size: 12px;
+      margin: 0 3px;
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    &.completed {
+      background: #28a745;
+      color: white;
+
+      &::after {
+        content: '✓';
+        font-size: 12px;
+      }
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      background: #e9ecef;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 5px;
+
+      @media (max-width: 480px) {
+        width: 15px;
+        margin-left: 3px;
+      }
+    }
+  }
+}
+
+// Additional animations
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .auth-card {
-  background: white;
-  padding: 2rem;
+  animation: slideInUp 0.6s ease-out;
+}
+
+// Email verification notice
+.verification-notice {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  padding: 15px;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
   text-align: center;
-  width: 350px;
-}
 
-h2 {
-  margin-bottom: 5px;
-  color: #333;
-}
+  @media (max-width: 480px) {
+    padding: 12px;
+    margin: 15px 0;
+  }
 
-p {
-  color: #666;
-  font-size: 14px;
-}
+  .notice-icon {
+    font-size: 24px;
+    color: #667eea;
+    margin-bottom: 10px;
 
-.input-group {
-  margin-bottom: 1rem;
-  text-align: left;
-}
+    @media (max-width: 480px) {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+  }
 
-.input-group label {
-  display: block;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
+  .notice-text {
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
 
-.input-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.auth-btn {
-  width: 100%;
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.auth-btn:hover {
-  background: #0056b3;
-}
-
-.divider {
-  margin: 15px 0;
-  font-size: 14px;
-  font-weight: bold;
-  color: #888;
-  position: relative;
-}
-
-.divider::before, .divider::after {
-  content: "";
-  display: block;
-  width: 40%;
-  height: 1px;
-  background: #ccc;
-  position: absolute;
-  top: 50%;
-}
-
-.divider::before {
-  left: 0;
-}
-
-.divider::after {
-  right: 0;
-}
-
-.google-auth-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: white;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  color: #555;
-}
-
-.google-auth-btn img {
-  width: 20px;
-  height: 20px;
-}
-
-.google-auth-btn:hover {
-  background: #f1f1f1;
-}
-
-.switch-auth {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.switch-auth a {
-  color: #007bff;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.switch-auth a:hover {
-  text-decoration: underline;
+    @media (max-width: 480px) {
+      font-size: 13px;
+    }
+  }
 }
